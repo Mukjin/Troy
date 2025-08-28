@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>고객 대시보드 - TROY</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/customer-dashboard.css" />
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <!-- 사이드바 -->
+      <div class="sidebar">
+        <div class="logo-section">
+          <div class="logo" onclick="goToHome()" style="cursor: pointer">
+            TROY
+          </div>
+          <div class="company-name">트로이 인터내셔널</div>
+        </div>
+
+        <div class="user-info">
+          <div class="user-name">고객님</div>
+          <div class="user-role">고객</div>
+        </div>
+
+        <div class="mini-deposit">
+          <div class="mini-deposit-amount">32</div>
+          <div class="mini-deposit-label">예치금잔액</div>
+          <button class="mini-deposit-btn">충전</button>
+        </div>
+
+        <button
+          class="new-campaign-btn"
+          onclick="window.location.href='campaign-create.html'"
+        >
+          새로운 캠페인 등록
+        </button>
+
+        <div class="menu-section">
+          <div class="menu-item" onclick="showNoticeBoard()">공지사항</div>
+          <div class="menu-item" onclick="showServiceInfo()">서비스 소개</div>
+        </div>
+
+        <div class="menu-section">
+          <div class="menu-title">고객 관리</div>
+          <div class="menu-item active">캠페인 현황</div>
+          <div class="menu-item">결과 분석</div>
+          <div class="menu-item">예산 관리</div>
+        </div>
+
+        <div class="menu-section">
+          <div class="menu-title">고객지원</div>
+          <div class="menu-item">1:1 문의</div>
+        </div>
+
+        <div class="menu-section">
+          <div class="menu-title">계정관리</div>
+          <div class="menu-item">결제내역</div>
+          <div class="menu-item" onclick="window.location.href='my-info.html'">
+            나의 정보
+          </div>
+        </div>
+
+        <div class="logout">로그아웃</div>
+      </div>
+
+      <!-- 메인 콘텐츠 -->
+      <div class="main-content">
+        <div class="header">
+          <h1 class="page-title">고객 대시보드</h1>
+          <p class="page-subtitle">캠페인 현황을 확인하고 결과를 분석하세요</p>
+        </div>
+
+        <!-- 통계 카드 -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number total">18</div>
+            <div class="stat-label">전체 캠페인</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number scheduled">5</div>
+            <div class="stat-label">예정</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number in-progress">8</div>
+            <div class="stat-label">진행중</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number completed">5</div>
+            <div class="stat-label">완료</div>
+          </div>
+        </div>
+
+        <!-- 검색 섹션 -->
+        <div class="search-section">
+          <div class="search-controls">
+            <input
+              type="text"
+              class="search-input"
+              placeholder="캠페인 제목검색"
+            />
+            <button class="search-btn">검색</button>
+            <button class="reset-btn">초기화</button>
+            <input
+              type="text"
+              class="search-input"
+              placeholder="모든유형· 모든플랫폼"
+            />
+          </div>
+          <div class="notice-box">
+            고객 계정으로 등록된 캠페인입니다. 진행 상황과 결과를 확인할 수
+            있습니다.
+          </div>
+        </div>
+
+        <!-- 캠페인 리스트 -->
+        <div class="campaign-list">
+          <div class="campaign-header">
+            <div>이미지</div>
+            <div>캠페인 정보</div>
+            <div>상태</div>
+            <div>현황</div>
+            <div>제출/선정</div>
+            <div>액션</div>
+          </div>
+
+          <div class="campaign-item">
+            <div class="campaign-image">이미지</div>
+            <div class="campaign-info">
+              <h3>[고객] 쿠팡 구매평 캠페인</h3>
+              <div class="campaign-id">CU202406149371330A9310</div>
+              <div class="campaign-tags">
+                <span class="tag pick">고객 추천</span>
+                <span class="tag feature">신제품</span>
+              </div>
+            </div>
+            <div class="campaign-status">
+              <span class="status-badge blue">구매평</span>
+            </div>
+            <div class="campaign-status">180/200</div>
+            <div class="campaign-status">2025-8-03~ 2025-08-21</div>
+            <div class="campaign-actions">
+              <button class="action-btn">결과보기</button>
+              <button class="action-btn">분석보고</button>
+            </div>
+          </div>
+
+          <div class="campaign-item">
+            <div class="campaign-image">이미지</div>
+            <div class="campaign-info">
+              <h3>[고객] 인스타그램 체험단</h3>
+              <div class="campaign-id">CU202402281155995A7017</div>
+            </div>
+            <div class="campaign-status">
+              <span class="status-badge orange">제공형</span>
+            </div>
+            <div class="campaign-status">48/50</div>
+            <div class="campaign-status">2025-08-17</div>
+            <div class="campaign-actions">
+              <button class="action-btn">결과보기</button>
+              <button class="action-btn">분석보고</button>
+            </div>
+          </div>
+
+          <div class="campaign-item">
+            <div class="campaign-image">이미지</div>
+            <div class="campaign-info">
+              <h3>[고객] 네이버 블로그 리뷰</h3>
+              <div class="campaign-id">CU2024022811552153A7024</div>
+            </div>
+            <div class="campaign-status">
+              <span class="status-badge orange">제공형</span>
+            </div>
+            <div class="campaign-status">30/30</div>
+            <div class="campaign-status">2025-08-11</div>
+            <div class="campaign-actions">
+              <button class="action-btn">결과보기</button>
+              <button class="action-btn">분석보고</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 채팅 상담 버튼 -->
+    <div class="chat-button">
+      <div class="chat-icon">💬</div>
+      <div class="chat-text">채팅 상담</div>
+    </div>
+
+    <script src="../js/customer-dashboard.js"></script>
+  </body>
+</html>

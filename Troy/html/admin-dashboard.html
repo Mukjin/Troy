@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>광고주센터 대시보드 - Troy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/admin-dashboard.css" />
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <!-- 사이드바 -->
+      <div class="sidebar">
+        <div class="logo-section">
+          <div class="logo" onclick="goToHome()" style="cursor: pointer">
+            TROY
+          </div>
+          <div class="company-name">트로이 인터내셔널</div>
+        </div>
+
+        <div class="user-info">
+          <div class="user-name">애드피플님</div>
+          <div class="user-role">관리자</div>
+        </div>
+
+        <div class="mini-deposit">
+          <div class="mini-deposit-amount">10</div>
+          <div class="mini-deposit-label">예치금잔액</div>
+          <button class="mini-deposit-btn">충전</button>
+        </div>
+
+        <button
+          class="new-campaign-btn"
+          onclick="window.location.href='campaign-create.html'"
+        >
+          새로운 캠페인 등록
+        </button>
+
+        <div class="menu-section">
+          <div class="menu-item" onclick="showNoticeBoard()">공지사항</div>
+          <div class="menu-item" onclick="showServiceInfo()">서비스 소개</div>
+        </div>
+
+        <div class="menu-section">
+          <div class="menu-title">캠페인 관리</div>
+          <div class="menu-item active">광고 캠페인 관리</div>
+          <div class="menu-item">당첨자 선정</div>
+          <div class="menu-item">레포트</div>
+        </div>
+
+        <div class="menu-section">
+          <div class="menu-title">고객지원</div>
+          <div class="menu-item">1:1 문의</div>
+        </div>
+
+        <div class="menu-section">
+          <div class="menu-title">계정관리</div>
+          <div class="menu-item">결제내역</div>
+          <div class="menu-item">정산</div>
+          <div class="menu-item" onclick="window.location.href='my-info.html'">
+            나의 정보
+          </div>
+        </div>
+
+        <div class="logout">로그아웃</div>
+      </div>
+
+      <!-- 메인 콘텐츠 -->
+      <div class="main-content">
+        <div class="header">
+          <h1 class="page-title">관리자 대시보드</h1>
+          <p class="page-subtitle">캠페인 현황을 한눈에 확인하고 관리하세요</p>
+        </div>
+
+        <!-- 통계 카드 -->
+        <div class="stats-grid">
+          <div class="stat-card" data-status="all">
+            <div class="stat-number" id="total-count">42</div>
+            <div class="stat-label">전체</div>
+          </div>
+          <div class="stat-card" data-status="scheduled">
+            <div class="stat-number" id="scheduled-count">8</div>
+            <div class="stat-label">예정</div>
+          </div>
+          <div class="stat-card" data-status="progress">
+            <div class="stat-number" id="progress-count">15</div>
+            <div class="stat-label">진행</div>
+          </div>
+          <div class="stat-card" data-status="completed">
+            <div class="stat-number" id="completed-count">19</div>
+            <div class="stat-label">완료</div>
+          </div>
+        </div>
+
+        <!-- 검색 섹션 -->
+        <div class="search-section">
+          <div class="search-controls">
+            <input
+              type="text"
+              class="search-input"
+              placeholder="캠페인 제목 검색"
+              id="search-input"
+            />
+            <button class="search-btn" id="search-btn">검색</button>
+            <button class="reset-btn" id="reset-btn">초기화</button>
+          </div>
+          <div class="notice-box">
+            현재 모집(신청)이 시작된 캠페인입니다. 내용 수정은 불가하며, 삭제는
+            가능하지만 패널티가 적용됩니다.
+          </div>
+        </div>
+
+        <!-- 캠페인 리스트 -->
+        <div class="campaign-list">
+          <div class="campaign-header">
+            <div>이미지</div>
+            <div>캠페인 정보</div>
+            <div>상태</div>
+            <div>현황</div>
+            <div>도구</div>
+            <div>제출/선정</div>
+            <div>액션</div>
+          </div>
+
+          <div class="campaign-item" data-status="progress">
+            <div class="campaign-image">이미지</div>
+            <div class="campaign-info">
+              <h3>[쿠팡 구매평] 6-195PROBLEM 발란스핏 종아리 마사지기</h3>
+              <div class="campaign-id">202406149371330A9310</div>
+              <div class="campaign-tags">
+                <span class="tag pick">해은PICK!</span>
+                <span class="tag feature">초강력 맞춤압박</span>
+                <span class="tag feature">종아리붓기싹!</span>
+              </div>
+            </div>
+            <div class="campaign-status">
+              <span class="status-badge blue">구매평</span>
+            </div>
+            <div class="campaign-status">84,550 C</div>
+            <div class="campaign-status">200/15</div>
+            <div class="campaign-status">2025-8-03~<br />2025-08-21</div>
+            <div class="campaign-actions">
+              <button class="action-btn">수정</button>
+              <button class="delete-btn">삭제</button>
+            </div>
+          </div>
+
+          <div class="campaign-item" data-status="completed">
+            <div class="campaign-image">이미지</div>
+            <div class="campaign-info">
+              <h3>크롭후디스셔츠 - 베이지</h3>
+              <div class="campaign-id">2024022811553446A7031</div>
+            </div>
+            <div class="campaign-status">
+              <span class="status-badge green">완료</span>
+            </div>
+            <div class="campaign-status">5/5</div>
+            <div class="campaign-status">-</div>
+            <div class="campaign-status">종료됨</div>
+            <div class="campaign-actions">
+              <button class="action-btn">리뷰확인</button>
+            </div>
+          </div>
+
+          <div class="campaign-item" data-status="applying">
+            <div class="campaign-image">이미지</div>
+            <div class="campaign-info">
+              <h3>[인스타그램] 헤이로지manon - 브이골지가디건cd</h3>
+              <div class="campaign-id">202402281155995A7017</div>
+            </div>
+            <div class="campaign-status">
+              <span class="status-badge orange">신청중</span>
+            </div>
+            <div class="campaign-status">223/5</div>
+            <div class="campaign-status">-</div>
+            <div class="campaign-status">2025-08-17<br />신청마감</div>
+            <div class="campaign-actions">
+              <button class="action-btn">수정</button>
+              <button class="delete-btn">삭제</button>
+            </div>
+          </div>
+
+          <div class="campaign-item" data-status="completed">
+            <div class="campaign-image">이미지</div>
+            <div class="campaign-info">
+              <h3>[네이버 블로그] 라온 탈모증상완화 기능성 샴푸</h3>
+              <div class="campaign-id">2024022811552153A7024</div>
+            </div>
+            <div class="campaign-status">
+              <span class="status-badge green">완료</span>
+            </div>
+            <div class="campaign-status">50/50</div>
+            <div class="campaign-status">-</div>
+            <div class="campaign-status">종료됨</div>
+            <div class="campaign-actions">
+              <button class="action-btn">리뷰확인</button>
+            </div>
+          </div>
+
+          <div class="campaign-item" data-status="completed">
+            <div class="campaign-image">이미지</div>
+            <div class="campaign-info">
+              <h3>[쿠팡구매] 라비시레더바디워시+바디로션</h3>
+              <div class="campaign-id">2024022811553291A7030</div>
+            </div>
+            <div class="campaign-status">
+              <span class="status-badge orange">페이백</span>
+            </div>
+            <div class="campaign-status">3/5</div>
+            <div class="campaign-status">-</div>
+            <div class="campaign-status">종료됨</div>
+            <div class="campaign-actions">
+              <button class="action-btn">리뷰확인</button>
+            </div>
+          </div>
+
+          <div class="campaign-item" data-status="scheduled">
+            <div class="campaign-image">이미지</div>
+            <div class="campaign-info">
+              <h3>페블펫 강아지고양이 애견스마트자동급식기</h3>
+              <div class="campaign-id">202404241012006A8182</div>
+            </div>
+            <div class="campaign-status">
+              <span class="status-badge blue">예정</span>
+            </div>
+            <div class="campaign-status">0/30</div>
+            <div class="campaign-status">-</div>
+            <div class="campaign-status">2025-08-24</div>
+            <div class="campaign-actions">
+              <button class="action-btn">수정</button>
+              <button class="delete-btn">삭제</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../js/admin-dashboard.js"></script>
+
+    <!-- 서비스 소개 모달 -->
+    <div id="serviceModal" class="service-modal">
+      <div class="service-modal-content">
+        <div class="service-modal-header">
+          <h2>Troy 서비스 소개</h2>
+          <span class="close-btn" onclick="hideServiceInfo()">&times;</span>
+        </div>
+
+        <div class="service-tabs">
+          <button
+            class="service-tab active"
+            onclick="switchService('influencer')"
+          >
+            인플루언서 마케팅
+          </button>
+          <button class="service-tab" onclick="switchService('campaign')">
+            캠페인 관리
+          </button>
+          <button class="service-tab" onclick="switchService('analytics')">
+            데이터 분석
+          </button>
+        </div>
+
+        <div class="service-modal-body">
+          <!-- 인플루언서 마케팅 -->
+          <div id="influencer" class="service-content-section">
+            <h3>인플루언서 마케팅</h3>
+            <p>
+              Troy의 인플루언서 마케팅 서비스는 브랜드와 인플루언서를 효과적으로
+              연결하여 진정성 있는 마케팅 캠페인을 구현합니다.
+            </p>
+
+            <div class="service-features">
+              <h4>주요 특징</h4>
+              <ul>
+                <li>
+                  다양한 플랫폼 (Instagram, YouTube, TikTok, 네이버 블로그) 지원
+                </li>
+                <li>인플루언서 매칭 알고리즘을 통한 최적의 파트너 추천</li>
+                <li>실시간 성과 모니터링 및 분석 리포트 제공</li>
+                <li>투명한 비용 구조와 성과 기반 요금제</li>
+                <li>브랜드 세이프티를 위한 엄격한 인플루언서 검증 시스템</li>
+              </ul>
+            </div>
+
+            <div class="service-stats">
+              <div class="stat-item">
+                <div class="stat-number">10,000+</div>
+                <div class="stat-label">등록 인플루언서</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">성공 캠페인</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">95%</div>
+                <div class="stat-label">고객 만족도</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 캠페인 관리 -->
+          <div
+            id="campaign"
+            class="service-content-section"
+            style="display: none"
+          >
+            <h3>통합 캠페인 관리</h3>
+            <p>
+              Troy의 캠페인 관리 서비스는 복잡한 마케팅 캠페인을 하나의
+              플랫폼에서 체계적으로 관리할 수 있도록 지원합니다.
+            </p>
+
+            <div class="service-features">
+              <h4>핵심 기능</h4>
+              <ul>
+                <li>직관적인 대시보드를 통한 캠페인 현황 관리</li>
+                <li>자동화된 워크플로우로 효율적인 업무 처리</li>
+                <li>실시간 알림 및 상태 업데이트 시스템</li>
+                <li>다양한 캠페인 유형 지원 (구매평, 체험단, 콘텐츠 제작)</li>
+                <li>예산 관리 및 ROI 추적 기능</li>
+              </ul>
+            </div>
+
+            <div class="service-stats">
+              <div class="stat-item">
+                <div class="stat-number">1,000+</div>
+                <div class="stat-label">관리 캠페인</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">실시간 모니터링</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">99.9%</div>
+                <div class="stat-label">시스템 안정성</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 데이터 분석 -->
+          <div
+            id="analytics"
+            class="service-content-section"
+            style="display: none"
+          >
+            <h3>데이터 분석 & 인사이트</h3>
+            <p>
+              Troy의 데이터 분석 서비스는 마케팅 캠페인의 모든 데이터를 수집,
+              분석하여 실행 가능한 인사이트를 제공합니다.
+            </p>
+
+            <div class="service-features">
+              <h4>분석 영역</h4>
+              <ul>
+                <li>캠페인 성과 분석 (도달률, 참여율, 전환율)</li>
+                <li>인플루언서 성과 평가 및 랭킹</li>
+                <li>오디언스 분석 및 세그멘테이션</li>
+                <li>경쟁사 동향 및 시장 분석</li>
+                <li>트렌드 예측 및 기회 발굴</li>
+              </ul>
+            </div>
+
+            <div class="service-stats">
+              <div class="stat-item">
+                <div class="stat-number">1TB+</div>
+                <div class="stat-label">분석 데이터</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">분석 지표</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">실시간</div>
+                <div class="stat-label">데이터 업데이트</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 공지사항 섹션 (인라인) -->
+        <div id="noticeSection" style="display: none">
+          <div class="notice-back-btn" onclick="hideNoticeBoard()">
+            ← 대시보드로 돌아가기
+          </div>
+
+          <div class="notice-board-inline">
+            <div class="board-header">
+              <h3>공지사항 목록</h3>
+              <div class="board-stats">총 8개의 공지사항</div>
+            </div>
+
+            <div class="notice-list">
+              <div class="notice-header">
+                <div>번호</div>
+                <div>제목</div>
+                <div>작성일</div>
+                <div>조회수</div>
+              </div>
+
+              <div class="notice-item" onclick="openNoticeDetail(1)">
+                <div class="notice-number">8</div>
+                <div class="notice-title important">
+                  시스템 정기 점검 안내 (2025.08.30)
+                </div>
+                <div class="notice-date">2025.08.27</div>
+                <div class="notice-views">1,245</div>
+              </div>
+
+              <div class="notice-item" onclick="openNoticeDetail(2)">
+                <div class="notice-number">7</div>
+                <div class="notice-title">캠페인 등록 기능 개선 안내</div>
+                <div class="notice-date">2025.08.25</div>
+                <div class="notice-views">892</div>
+              </div>
+
+              <div class="notice-item" onclick="openNoticeDetail(3)">
+                <div class="notice-number">6</div>
+                <div class="notice-title">Troy 플랫폼 2.0 업데이트 완료</div>
+                <div class="notice-date">2025.08.20</div>
+                <div class="notice-views">2,156</div>
+              </div>
+
+              <div class="notice-item" onclick="openNoticeDetail(4)">
+                <div class="notice-number">5</div>
+                <div class="notice-title important">
+                  개인정보처리방침 개정 안내
+                </div>
+                <div class="notice-date">2025.08.15</div>
+                <div class="notice-views">1,678</div>
+              </div>
+
+              <div class="notice-item" onclick="openNoticeDetail(5)">
+                <div class="notice-number">4</div>
+                <div class="notice-title">새로운 파트너사 등록 오픈</div>
+                <div class="notice-date">2025.08.10</div>
+                <div class="notice-views">934</div>
+              </div>
+
+              <div class="notice-item" onclick="openNoticeDetail(6)">
+                <div class="notice-number">3</div>
+                <div class="notice-title">여름 휴가철 고객센터 운영 안내</div>
+                <div class="notice-date">2025.08.01</div>
+                <div class="notice-views">567</div>
+              </div>
+
+              <div class="notice-item" onclick="openNoticeDetail(7)">
+                <div class="notice-number">2</div>
+                <div class="notice-title">Troy 모바일 앱 출시 안내</div>
+                <div class="notice-date">2025.07.25</div>
+                <div class="notice-views">3,421</div>
+              </div>
+
+              <div class="notice-item" onclick="openNoticeDetail(8)">
+                <div class="notice-number">1</div>
+                <div class="notice-title">Troy 플랫폼 오픈 기념 이벤트</div>
+                <div class="notice-date">2025.07.01</div>
+                <div class="notice-views">5,234</div>
+              </div>
+            </div>
+
+            <div class="pagination">
+              <button class="page-btn" disabled>‹</button>
+              <button class="page-btn active">1</button>
+              <button class="page-btn">2</button>
+              <button class="page-btn">3</button>
+              <button class="page-btn">›</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 공지사항 모달 -->
+    <div id="noticeModal" class="service-modal">
+      <div class="service-modal-content">
+        <div class="service-modal-header">
+          <h2>공지사항</h2>
+          <span class="close-btn" onclick="hideNoticeBoard()">&times;</span>
+        </div>
+
+        <div class="notice-board">
+          <div class="board-header">
+            <h3>공지사항 목록</h3>
+            <div class="board-stats">총 8개의 공지사항</div>
+          </div>
+
+          <div class="notice-list">
+            <div class="notice-header">
+              <div>번호</div>
+              <div>제목</div>
+              <div>작성일</div>
+              <div>조회수</div>
+            </div>
+
+            <div class="notice-item" onclick="openNoticeDetail(1)">
+              <div class="notice-number">8</div>
+              <div class="notice-title important">
+                시스템 정기 점검 안내 (2025.08.30)
+              </div>
+              <div class="notice-date">2025.08.27</div>
+              <div class="notice-views">1,245</div>
+            </div>
+
+            <div class="notice-item" onclick="openNoticeDetail(2)">
+              <div class="notice-number">7</div>
+              <div class="notice-title">캠페인 등록 기능 개선 안내</div>
+              <div class="notice-date">2025.08.25</div>
+              <div class="notice-views">892</div>
+            </div>
+
+            <div class="notice-item" onclick="openNoticeDetail(3)">
+              <div class="notice-number">6</div>
+              <div class="notice-title">Troy 플랫폼 2.0 업데이트 완료</div>
+              <div class="notice-date">2025.08.20</div>
+              <div class="notice-views">2,156</div>
+            </div>
+
+            <div class="notice-item" onclick="openNoticeDetail(4)">
+              <div class="notice-number">5</div>
+              <div class="notice-title important">
+                개인정보처리방침 개정 안내
+              </div>
+              <div class="notice-date">2025.08.15</div>
+              <div class="notice-views">1,678</div>
+            </div>
+
+            <div class="notice-item" onclick="openNoticeDetail(5)">
+              <div class="notice-number">4</div>
+              <div class="notice-title">새로운 파트너사 등록 오픈</div>
+              <div class="notice-date">2025.08.10</div>
+              <div class="notice-views">934</div>
+            </div>
+
+            <div class="notice-item" onclick="openNoticeDetail(6)">
+              <div class="notice-number">3</div>
+              <div class="notice-title">여름 휴가철 고객센터 운영 안내</div>
+              <div class="notice-date">2025.08.01</div>
+              <div class="notice-views">567</div>
+            </div>
+
+            <div class="notice-item" onclick="openNoticeDetail(7)">
+              <div class="notice-number">2</div>
+              <div class="notice-title">Troy 모바일 앱 출시 안내</div>
+              <div class="notice-date">2025.07.25</div>
+              <div class="notice-views">3,421</div>
+            </div>
+
+            <div class="notice-item" onclick="openNoticeDetail(8)">
+              <div class="notice-number">1</div>
+              <div class="notice-title">Troy 플랫폼 오픈 기념 이벤트</div>
+              <div class="notice-date">2025.07.01</div>
+              <div class="notice-views">5,234</div>
+            </div>
+          </div>
+
+          <div class="pagination">
+            <button class="page-btn" disabled>‹</button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn">›</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

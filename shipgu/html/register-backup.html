@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>회원가입 | SHIPGU - 글로벌 소싱 플랫폼</title>
+    <meta name="description" content="SHIPGU 회원가입 - 세상에 없던 1688 직접 구매 솔루션"/>
+    <link rel="stylesheet" href="../css/style.css"/>
+    <link rel="stylesheet" href="../css/register.css"/>
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet"/>
+        * {
+    <script>
+        let selectedMemberType = 'individual';
+
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                selectedMemberType = this.dataset.type;
+            });
+        });
+
+        function signupWithKakao() {
+            const userData = {
+                email: 'kakao@shipgu.com',
+                name: '카카오사용자',
+                memberType: selectedMemberType,
+                isVerified: false,
+                loginMethod: 'kakao',
+                loginTime: new Date().toISOString()
+            };
+            
+            localStorage.setItem('currentUser', JSON.stringify(userData));
+            alert('카카오 가입 완료!');
+            window.location.href = 'verify.html';
+        }
+
+        function signupWithGoogle() {
+            const userData = {
+                email: 'google@shipgu.com',
+                name: '구글사용자',
+                memberType: selectedMemberType,
+                isVerified: false,
+                loginMethod: 'google',
+                loginTime: new Date().toISOString()
+            };
+            
+            localStorage.setItem('currentUser', JSON.stringify(userData));
+            alert('구글 가입 완료!');
+            window.location.href = 'verify.html';
+        }
+
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            if (password.length < 8) {
+                alert('비밀번호는 8자 이상이어야 합니다.');
+                return;
+            }
+            
+            if (!document.querySelector('input[name="terms"]').checked || 
+                !document.querySelector('input[name="privacy"]').checked) {
+                alert('필수 약관에 동의해주세요.');
+                return;
+            }
+            
+            const userData = {
+                email: email,
+                name: name,
+                memberType: selectedMemberType,
+                isVerified: false,
+                loginTime: new Date().toISOString()
+            };
+            
+            localStorage.setItem('currentUser', JSON.stringify(userData));
+            alert('가입 완료!');
+            window.location.href = 'verify.html';
+        });
+    </script>
+</body>
+</html>
